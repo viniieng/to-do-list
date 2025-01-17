@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import "./style.css";
 
 export default function Form(props) {
   const { onSave } = props;
@@ -33,7 +32,7 @@ export default function Form(props) {
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
-      <textarea
+      <input
         placeholder="Descrição"
         className="task-field"
         value={description}

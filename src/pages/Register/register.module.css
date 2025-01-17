@@ -1,0 +1,76 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.container {
+  border: 3px solid black;
+  font-family: "Roboto", sans-serif;
+  width: 400px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1010;
+}
+
+.container .title {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.container .header {
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 24px;
+}
+
+.container form {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  gap: 16px;
+}
+
+.container form .inputContainer {
+  margin-bottom: 5px;
+}
+
+.container form .inputContainer input {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  height: 30px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 3px solid black;
+  padding: 5px 10px;
+}
+
+.container form .button {
+  width: 120px;
+  height: 40px;
+  border: 3px solid black;
+  border-radius: 25px;
+  margin: 0 auto;
+  background-color: #28a745; /* Cor inicial para diferenciar do login */
+  color: white; /* Cor do texto */
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.container form .button:hover {
+  background-color: #218838;
+  transform: scale(1.05);
+}

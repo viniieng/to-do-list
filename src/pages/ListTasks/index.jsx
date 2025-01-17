@@ -1,7 +1,8 @@
 import { useState } from "react";
 import Card from "../../components/Card/Card";
 import Form from "../../components/Form/form";
-import "./style.css";
+import { signOut } from "firebase/auth";
+import { auth } from "../../services/firebaseConfig";
 
 export const ListTasks = () => {
   const [tasks, setTasks] = useState([]);
@@ -12,8 +13,8 @@ export const ListTasks = () => {
 
   return (
     <div className="container">
+      <button onClick={() => signOut(auth)}>DESLOGAR</button>
       <Form onSave={addTask} />
-
       <div className="task-cards">
         {tasks.map((task, index) => (
           <Card

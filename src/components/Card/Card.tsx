@@ -1,5 +1,4 @@
 import React from "react";
-import "./style.css";
 
 export default function Card(props) {
   const { name, description, state, dateTime, id } = props;
