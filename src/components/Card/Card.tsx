@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function Card(props) {
-  const { name, description, state, dateTime, id } = props;
+  const { name, description, state, dateTime, onEdit } = props;
 
   const getStateClass = (state) => {
     switch (state) {
@@ -23,9 +23,8 @@ export default function Card(props) {
         <span className={`card-state ${getStateClass(state)}`}>{state}</span>
       </div>
       <p className="card-description">{description}</p>
-      <span className="card-datetime">
-        {new Date(dateTime).toLocaleString()}
-      </span>
+      <span className="card-datetime">{dateTime.toLocaleString()}</span>
+      <button onClick={onEdit}>Editar</button>
     </div>
   );
 }

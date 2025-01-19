@@ -41,7 +41,7 @@ export const Login = () => {
                 type="email"
                 name="email"
                 id="email"
-                placeholder="  seuemail@gmail.com"
+                placeholder=" seuemail@gmail.com"
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
@@ -53,7 +53,7 @@ export const Login = () => {
                 type="password"
                 name="password"
                 id="password"
-                placeholder="  **********"
+                placeholder=" **********"
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />

@@ -49,7 +49,7 @@ export function Register() {
               type="text"
               name="email"
               id="email"
-              placeholder="seuemail@gmail.com"
+              placeholder=" seuemail@gmail.com"
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
@@ -59,7 +59,7 @@ export function Register() {
               type="password"
               name="password"
               id="password"
-              placeholder="**********"
+              placeholder=" **********"
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>

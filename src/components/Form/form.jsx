@@ -1,26 +1,45 @@
-import { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../contexts/authContext";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../services/firebaseConfig";
 
 export default function Form(props) {
-  const { onSave } = props;
+  const { user } = useContext(AuthContext);
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [state, setState] = useState("TODO");
+  const [loading, setLoading] = useState(false);
 
-  const handleSave = () => {
-    if (name && description && state) {
-      const task = {
-        name,
-        description,
-        state,
-        dateTime: new Date().toISOString(),
-        id: uuidv4(),
-      };
-      onSave(task);
+  const handleSave = async () => {
+    if (!name || !description || !state) {
+      alert("Por favor, preencha todos os campos.");
+      return;
+    }
+
+    const task = {
+      name,
+      description,
+      state,
+      dateTime: new Date().toISOString(),
+      userId: user?.uid,
+      taskId: crypto.randomUUID(),
+    };
+
+    try {
+      setLoading(true);
+      const tasksRef = collection(db, "tasks");
+      await addDoc(tasksRef, task);
+      alert("Task salva com sucesso!");
+
       setName("");
       setDescription("");
       setState("TODO");
+    } catch (error) {
+      console.error("Erro ao salvar a task:", error.message);
+      alert("Erro ao salvar a task.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -47,8 +66,8 @@ export default function Form(props) {
         <option value="DOING">DOING</option>
         <option value="DONE">DONE</option>
       </select>
-      <button className="save-button" onClick={handleSave}>
-        Salvar
+      <button className="save-button" onClick={handleSave} disabled={loading}>
+        {loading ? "Salvando..." : "Salvar"}
       </button>
     </div>
   );
