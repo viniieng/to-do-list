@@ -2,7 +2,7 @@ import { Link, Navigate } from "react-router-dom";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useState } from "react";
 import { auth } from "../../services/firebaseConfig";
-import styles from "./login.module.css";
+import "./login.css";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
@@ -24,18 +24,18 @@ export const Login = () => {
   }
 
   return (
-    <div className={styles.overlay}>
-      <div className={styles.container}>
-        <div className={styles.modal}>
-          <div className={styles.title}>
+    <div className="login-overlay">
+      <div className="login-container">
+        <div className="login-modal">
+          <div className="login-title">
             <h1>LOGIN</h1>
           </div>
-          <header className={styles.header}>
+          <header className="login-header">
             <span>Por favor, digite suas informações de login</span>
           </header>
 
           <form onSubmit={handleSignIn}>
-            <div className={styles.inputContainer}>
+            <div className="login-inputContainer">
               <label htmlFor="email">E-mail</label>
               <input
                 type="email"
@@ -47,7 +47,7 @@ export const Login = () => {
               />
             </div>
 
-            <div className={styles.inputContainer}>
+            <div className="login-inputContainer">
               <label htmlFor="password">Senha</label>
               <input
                 type="password"
@@ -59,10 +59,10 @@ export const Login = () => {
               />
             </div>
 
-            <button className={styles.button} type="submit">
+            <button className="login-button" type="submit">
               ENTRAR
             </button>
-            <div className={styles.footer}>
+            <div className="login-footer">
               <p>Você não tem uma conta?</p>
               <Link to="/register">Crie a sua conta aqui</Link>
             </div>

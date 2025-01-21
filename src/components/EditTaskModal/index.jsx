@@ -8,19 +8,21 @@ export const EditTaskModal = ({
   onSave,
   onChangeTask,
 }) => {
-  if (!isOpen) return null; // Não renderiza o modal se não estiver aberto
+  if (!isOpen) return null;
 
   return (
-    <div className="modal">
-      <div className="modal-content">
-        <h3>Editar Task</h3>
+    <div className="edit-task-modal-overlay">
+      <div className="edit-task-modal-content">
+        <h3 className="edit-task-modal-title">Editar Task</h3>
         <input
           type="text"
+          className="edit-task-modal-input"
           value={task.name}
           onChange={(e) => onChangeTask({ ...task, name: e.target.value })}
           placeholder="Nome da task"
         />
-        <textarea
+        <input
+          className="edit-task-modal-input"
           value={task.description}
           onChange={(e) =>
             onChangeTask({ ...task, description: e.target.value })
@@ -28,6 +30,7 @@ export const EditTaskModal = ({
           placeholder="Descrição da task"
         />
         <select
+          className="edit-task-modal-select"
           value={task.state}
           onChange={(e) => onChangeTask({ ...task, state: e.target.value })}
         >
@@ -35,8 +38,17 @@ export const EditTaskModal = ({
           <option value="DOING">DOING</option>
           <option value="DONE">DONE</option>
         </select>
-        <button onClick={() => onSave(task)}>Salvar</button>
-        <button onClick={onClose}>Cancelar</button>
+        <div className="edit-task-modal-buttons">
+          <button
+            className="edit-task-modal-button save"
+            onClick={() => onSave(task)}
+          >
+            Salvar
+          </button>
+          <button className="edit-task-modal-button cancel" onClick={onClose}>
+            Cancelar
+          </button>
+        </div>
       </div>
     </div>
   );

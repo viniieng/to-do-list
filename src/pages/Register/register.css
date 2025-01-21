@@ -1,4 +1,4 @@
-.overlay {
+.register-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -11,7 +11,7 @@
   z-index: 1000;
 }
 
-.container {
+.register-container {
   border: 3px solid black;
   font-family: "Roboto", sans-serif;
   width: 400px;
@@ -22,29 +22,30 @@
   z-index: 1010;
 }
 
-.container .title {
+.register-container .register-title {
   display: flex;
   align-items: center;
   flex-direction: column;
 }
 
-.container .header {
+.register-container .register-header {
   font-size: 15px;
   font-weight: bold;
   margin-bottom: 24px;
 }
 
-.container form {
+.register-container form {
   display: flex;
   flex-direction: column;
   font-weight: bold;
   gap: 16px;
 }
-.container form .inputContainer {
+
+.register-container form .register-inputContainer {
   margin-bottom: 5px;
 }
 
-.container form .inputContainer input {
+.register-container form .register-inputContainer input {
   display: flex;
   align-items: center;
   width: 90%;
@@ -55,21 +56,21 @@
   padding: 5px 10px;
 }
 
-.container form .button {
+.register-container form .register-button {
   width: 120px;
   height: 40px;
   border: 3px solid black;
   border-radius: 25px;
   margin: 0 auto;
-  background-color: #007bff; /* Cor inicial do botão */
+  background-color: #28a745; /* Cor inicial para diferenciar do login */
   color: white; /* Cor do texto */
   font-weight: bold;
   text-align: center;
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out; /* Transição mais longa e suave */
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
-.container form .button:hover {
-  background-color: #0056b3; /* Cor ao passar o mouse */
-  transform: scale(1.05); /* Aumenta ligeiramente o botão */
+.register-container form .register-button:hover {
+  background-color: #218838;
+  transform: scale(1.05);
 }

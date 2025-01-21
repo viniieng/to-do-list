@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../services/firebaseConfig";
-import styles from "./register.module.css";
+import "./register.css";
 
 export function Register() {
   const [email, setEmail] = useState("");
@@ -35,15 +35,15 @@ export function Register() {
   }
 
   return (
-    <div className={styles.overlay}>
-      <div className={styles.container}>
-        <h1 className={styles.title}>CADASTRO</h1>
-        <header className={styles.header}>
+    <div className="register-overlay">
+      <div className="register-container">
+        <h1 className="register-title">CADASTRO</h1>
+        <header className="register-header">
           <span>Por favor, digite suas informações de cadastro</span>
         </header>
 
         <form>
-          <div className={styles.inputContainer}>
+          <div className="register-inputContainer">
             <label htmlFor="email">E-mail</label>
             <input
               type="text"
@@ -53,7 +53,7 @@ export function Register() {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div className={styles.inputContainer}>
+          <div className="register-inputContainer">
             <label htmlFor="password">Senha</label>
             <input
               type="password"
@@ -63,11 +63,11 @@ export function Register() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          {errorMessage && <p className={styles.error}>{errorMessage}</p>}{" "}
-          <button onClick={handleSignUp} className={styles.button}>
+          {errorMessage && <p className="register-error">{errorMessage}</p>}
+          <button onClick={handleSignUp} className="register-button">
             CADASTRAR
           </button>
-          <div className={styles.footer}>
+          <div className="register-footer">
             <p>Você já tem uma conta?</p>
             <Link to="/login">Acesse sua conta aqui</Link>
           </div>

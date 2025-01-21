@@ -1,0 +1,93 @@
+.card {
+  width: 320px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-header {
+  margin-bottom: 15px;
+}
+
+.card-name {
+  font-size: 22px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.card-description {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.card-datetime {
+  font-size: 14px;
+  color: #999;
+  position: absolute; /* Posiciona o elemento em relação ao card */
+  bottom: 10px; /* Distância da borda inferior */
+  right: 10px; /* Distância da borda direita */
+}
+
+.card-state {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 5px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  border-bottom-right-radius: 12px;
+  color: white;
+  transform: translate(-10%, -10%);
+}
+
+.card-state-todo {
+  background-color: #ff4d4d;
+}
+
+.card-state-doing {
+  background-color: #ffd700;
+}
+
+.card-state-done {
+  background-color: #4caf50;
+}
+
+.card-buttons {
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 15px;
+}
+
+.card-buttons button {
+  flex: 1;
+  background-color: #ffffff;
+  color: white;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 0 5px;
+  transition: background-color 0.3s ease;
+}
+
+.card-buttons button:hover {
+  background-color: #d3d0cf;
+}
+
+.card-edit-button {
+  display: flex;
+  align-items: center;
+}

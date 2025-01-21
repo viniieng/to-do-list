@@ -1,0 +1,43 @@
+import React from "react";
+import "boxicons";
+import "./card.css";
+
+export default function Card(props) {
+  const { task, onEdit, onDelete } = props;
+
+  const { name, description, state, dateTime } = task;
+
+  const getStateClass = (state) => {
+    switch (state) {
+      case "TODO":
+        return "card-state-todo";
+      case "DOING":
+        return "card-state-doing";
+      case "DONE":
+        return "card-state-done";
+      default:
+        return "";
+    }
+  };
+
+  return (
+    <div className="card">
+      <div className="card-header">
+        <h2 className="card-name">{name}</h2>
+        <p className="card-description">{description}</p>
+      </div>
+      <span className={`card-state ${getStateClass(state)}`}>{state}</span>
+      <div className="card-buttons">
+        <button className="card-edit-button" onClick={onEdit}>
+          <box-icon name="edit-alt" color="gray"></box-icon>
+        </button>
+        <button onClick={onDelete}>
+          <box-icon name="message-alt-x" color="gray" type="solid"></box-icon>
+        </button>
+      </div>
+      <div className="card-datetime">
+        <span>{dateTime.toLocaleString()}</span>
+      </div>
+    </div>
+  );
+}

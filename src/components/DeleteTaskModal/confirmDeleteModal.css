@@ -1,4 +1,4 @@
-.edit-task-modal-overlay {
+.confirm-delete-modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -11,7 +11,7 @@
   z-index: 1000;
 }
 
-.edit-task-modal-content {
+.confirm-delete-modal {
   background: white;
   padding: 20px;
   border-radius: 8px;
@@ -22,46 +22,45 @@
   animation: fadeIn 0.3s ease-in-out;
 }
 
-.edit-task-modal-content h3 {
+.confirm-delete-modal h3 {
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 20px;
 }
 
-.edit-task-modal-content input,
-.edit-task-modal-content textarea,
-.edit-task-modal-content select {
-  width: 90%;
-  margin-bottom: 15px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.confirm-delete-modal p {
   font-size: 1rem;
+  margin-bottom: 20px;
 }
 
-.edit-task-modal-content button {
+.confirm-delete-buttons button {
   margin: 5px;
   padding: 10px 20px;
   border: none;
   border-radius: 4px;
-  background: #28a745; /* Verde para salvar */
-  color: white;
   font-weight: bold;
   cursor: pointer;
   transition: background 0.3s ease, transform 0.2s ease;
 }
 
-.edit-task-modal-content button:hover {
-  background: #218838;
+.confirm-delete-buttons .cancel-button {
+  background: #ccc;
+  color: black;
+}
+
+.confirm-delete-buttons .cancel-button:hover {
+  background: #b0b0b0;
   transform: scale(1.05);
 }
 
-.edit-task-modal-content button.cancel {
-  background: #f44336; /* Vermelho para cancelar */
+.confirm-delete-buttons .confirm-button {
+  background: #f44336;
+  color: white;
 }
 
-.edit-task-modal-content button.cancel:hover {
+.confirm-delete-buttons .confirm-button:hover {
   background: #d32f2f;
+  transform: scale(1.05);
 }
 
 @keyframes fadeIn {
