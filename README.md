@@ -87,7 +87,6 @@ React: Biblioteca para construção de interfaces.
 
 Firebase: Backend para autenticação e banco de dados.
 
-CSS: Estilização personalizada para os componentes.
 
 Observações
 
