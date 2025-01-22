@@ -11,10 +11,10 @@ export default function Form() {
   const [description, setDescription] = useState("");
   const [state, setState] = useState("TODO");
   const [loading, setLoading] = useState(false);
-
+  const [errorMessage, setErrorMessage] = useState("");
   const handleSave = async () => {
     if (!name || !description || !state) {
-      alert("Por favor, preencha todos os campos.");
+      setErrorMessage("Por favor, preencha todos os campos.");
       return;
     }
 
@@ -35,9 +35,9 @@ export default function Form() {
       setName("");
       setDescription("");
       setState("TODO");
+      setErrorMessage("");
     } catch (error) {
-      console.error("Erro ao salvar a task:", error.message);
-      alert("Erro ao salvar a task.");
+      console.error("Digite todos os campos");
     } finally {
       setLoading(false);
     }
@@ -69,6 +69,7 @@ export default function Form() {
           <option value="DONE">DONE</option>
         </select>
       </div>
+      {errorMessage && <p className="error-message">{errorMessage}</p>}{" "}
       <button className="save-button" onClick={handleSave} disabled={loading}>
         {loading ? "Salvando..." : "Salvar"}
       </button>

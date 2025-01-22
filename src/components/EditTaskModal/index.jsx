@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles.css";
 
 export const EditTaskModal = ({
@@ -8,7 +8,18 @@ export const EditTaskModal = ({
   onSave,
   onChangeTask,
 }) => {
+  const [error, setError] = useState("");
+
   if (!isOpen) return null;
+
+  const handleSave = () => {
+    if (!task.name.trim()) {
+      setError("O título é obrigatório.");
+      return;
+    }
+    setError("");
+    onSave(task);
+  };
 
   return (
     <div className="edit-task-modal-overlay">
@@ -18,7 +29,9 @@ export const EditTaskModal = ({
           type="text"
           className="edit-task-modal-input"
           value={task.name}
-          onChange={(e) => onChangeTask({ ...task, name: e.target.value })}
+          onChange={(e) => {
+            onChangeTask({ ...task, name: e.target.value });
+          }}
           placeholder="Nome da task"
         />
         <input
@@ -38,11 +51,9 @@ export const EditTaskModal = ({
           <option value="DOING">DOING</option>
           <option value="DONE">DONE</option>
         </select>
+        {error && <p className="edit-task-modal-error">{error}</p>}
         <div className="edit-task-modal-buttons">
-          <button
-            className="edit-task-modal-button save"
-            onClick={() => onSave(task)}
-          >
+          <button className="edit-task-modal-button save" onClick={handleSave}>
             Salvar
           </button>
           <button className="edit-task-modal-button cancel" onClick={onClose}>

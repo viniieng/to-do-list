@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../services/firebaseConfig";
+import "boxicons";
 import "./register.css";
 
 export function Register() {
@@ -10,7 +11,7 @@ export function Register() {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
-  const [createUserWithEmailAndPassword, user, loading, error] =
+  const [createUserWithEmailAndPassword, user, loading, errorFromFirebase] =
     useCreateUserWithEmailAndPassword(auth);
 
   useEffect(() => {
@@ -25,14 +26,16 @@ export function Register() {
 
     try {
       await createUserWithEmailAndPassword(email, password);
-    } catch (error) {
-      setErrorMessage(error.message);
-    }
+    } catch (error) {}
   };
 
-  if (loading) {
-    return <p>Carregando...</p>;
-  }
+  useEffect(() => {
+    if (errorFromFirebase) {
+      setErrorMessage(
+        "Erro ao Registrar usuário:  " + errorFromFirebase.message
+      );
+    }
+  }, [errorFromFirebase]);
 
   return (
     <div className="register-overlay">
@@ -49,7 +52,7 @@ export function Register() {
               type="text"
               name="email"
               id="email"
-              placeholder=" seuemail@gmail.com"
+              placeholder="seuemail@gmail.com"
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
@@ -59,14 +62,30 @@ export function Register() {
               type="password"
               name="password"
               id="password"
-              placeholder=" **********"
+              placeholder="**********"
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
+
           {errorMessage && <p className="register-error">{errorMessage}</p>}
-          <button onClick={handleSignUp} className="register-button">
-            CADASTRAR
+
+          <button
+            onClick={handleSignUp}
+            className="register-button"
+            disabled={loading}
+          >
+            {loading ? (
+              <box-icon
+                name="loader-alt"
+                animation="spin"
+                color="white"
+                size="xs"
+              ></box-icon>
+            ) : (
+              "CADASTRAR"
+            )}
           </button>
+
           <div className="register-footer">
             <p>Você já tem uma conta?</p>
             <Link to="/login">Acesse sua conta aqui</Link>

@@ -21,12 +21,14 @@ import "boxicons";
 
 export const ListTasks = () => {
   const [tasks, setTasks] = useState([]);
+  const [doneTasks, setDoneTasks] = useState([]);
   const { user } = useContext(AuthContext);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [taskToEdit, setTaskToEdit] = useState(null);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [taskToDelete, setTaskToDelete] = useState(null);
+  const [showDoneTasks, setShowDoneTasks] = useState(false);
 
   const fetchTasks = () => {
     try {
@@ -39,7 +41,11 @@ export const ListTasks = () => {
           ...doc.data(),
         }));
 
-        setTasks(fetchedTasks);
+        const done = fetchedTasks.filter((task) => task.state === "DONE");
+        const pending = fetchedTasks.filter((task) => task.state !== "DONE");
+
+        setTasks(pending);
+        setDoneTasks(done);
       });
 
       return unsubscribe;
@@ -62,11 +68,6 @@ export const ListTasks = () => {
         state: updatedTask.state,
       });
 
-      setTasks((prevTasks) =>
-        prevTasks.map((task) =>
-          task.id === updatedTask.id ? updatedTask : task
-        )
-      );
       setIsModalOpen(false);
     } catch (error) {
       console.error("Erro ao atualizar a task:", error.message);
@@ -93,6 +94,10 @@ export const ListTasks = () => {
     setTaskToDelete(null);
   };
 
+  const toggleDoneTasks = () => {
+    setShowDoneTasks((prevState) => !prevState);
+  };
+
   useEffect(() => {
     const unsubscribe = fetchTasks();
 
@@ -104,6 +109,12 @@ export const ListTasks = () => {
       <div className="list-task-header">
         <div className="list-task-button-header">
           <button
+            className="list-task-toggle-done-btn"
+            onClick={toggleDoneTasks}
+          >
+            {showDoneTasks ? "Tarefas Pendentes" : "Tarefas Concluídas"}
+          </button>
+          <button
             className="list-task-logout-btn"
             onClick={() => signOut(auth)}
           >
@@ -114,16 +125,56 @@ export const ListTasks = () => {
           <Form />
         </div>
       </div>
+
       <div className="list-task-cards">
-        {tasks.map((task) => (
-          <Card
-            key={task.id}
-            className="list-task-card"
-            task={task}
-            onEdit={() => handleEdit(task)}
-            onDelete={() => openDeleteModal(task)}
-          />
-        ))}
+        {!showDoneTasks && (
+          <>
+            {tasks.length === 0 ? (
+              <div className="list-task-noTask">
+                <box-icon
+                  name="task"
+                  className="task-icon"
+                  color="gray"
+                  size="lg"
+                ></box-icon>
+                <p className="list-task-message">Não há tarefas pendentes :D</p>
+              </div>
+            ) : (
+              tasks.map((task) => (
+                <Card
+                  key={task.id}
+                  className="list-task-card"
+                  task={task}
+                  onEdit={() => handleEdit(task)}
+                  onDelete={() => openDeleteModal(task)}
+                />
+              ))
+            )}
+          </>
+        )}
+
+        {showDoneTasks && (
+          <>
+            {doneTasks.length === 0 ? (
+              <div className="list-task-noTask">
+                <box-icon name="task-x" color="gray" size="lg"></box-icon>
+                <p className="list-task-message">
+                  Nenhuma tarefa concluída ainda :(
+                </p>
+              </div>
+            ) : (
+              doneTasks.map((task) => (
+                <Card
+                  key={task.id}
+                  className="list-task-card done"
+                  task={task}
+                  onEdit={() => handleEdit(task)}
+                  onDelete={() => openDeleteModal(task)}
+                />
+              ))
+            )}
+          </>
+        )}
       </div>
 
       <EditTaskModal

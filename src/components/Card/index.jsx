@@ -24,8 +24,8 @@ export default function Card(props) {
     <div className="card">
       <div className="card-header">
         <h2 className="card-name">{name}</h2>
-        <p className="card-description">{description}</p>
       </div>
+      <p className="card-description">{description}</p>
       <span className={`card-state ${getStateClass(state)}`}>{state}</span>
       <div className="card-buttons">
         <button className="card-edit-button" onClick={onEdit}>

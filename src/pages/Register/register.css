@@ -2,75 +2,97 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.6);
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
-  align-items: center;
   justify-content: center;
-  z-index: 1000;
+  align-items: center;
+  z-index: 9999;
 }
 
 .register-container {
-  border: 3px solid black;
-  font-family: "Roboto", sans-serif;
-  width: 400px;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  z-index: 1010;
-}
-
-.register-container .register-title {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-.register-container .register-header {
-  font-size: 15px;
-  font-weight: bold;
-  margin-bottom: 24px;
-}
-
-.register-container form {
-  display: flex;
-  flex-direction: column;
-  font-weight: bold;
-  gap: 16px;
-}
-
-.register-container form .register-inputContainer {
-  margin-bottom: 5px;
-}
-
-.register-container form .register-inputContainer input {
-  display: flex;
-  align-items: center;
-  width: 90%;
-  height: 30px;
-  margin-bottom: 10px;
+  background-color: white;
+  padding: 30px;
   border-radius: 8px;
-  border: 3px solid black;
-  padding: 5px 10px;
-}
-
-.register-container form .register-button {
-  width: 120px;
-  height: 40px;
-  border: 3px solid black;
-  border-radius: 25px;
-  margin: 0 auto;
-  background-color: #28a745; /* Cor inicial para diferenciar do login */
-  color: white; /* Cor do texto */
-  font-weight: bold;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
-.register-container form .register-button:hover {
-  background-color: #218838;
-  transform: scale(1.05);
+.register-title {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.register-header span {
+  font-size: 14px;
+  color: #777;
+}
+
+.register-inputContainer {
+  margin: 15px 0;
+  text-align: left;
+}
+
+.register-inputContainer label {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.register-inputContainer input {
+  width: 95%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+.register-inputContainer input:focus {
+  border-color: #007bff;
+}
+
+.register-error {
+  color: red;
+  font-weight: bold;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.register-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.register-button:hover {
+  background-color: #0056b3;
+}
+
+.register-footer {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #555;
+}
+
+.register-footer a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.register-footer a:hover {
+  text-decoration: underline;
 }

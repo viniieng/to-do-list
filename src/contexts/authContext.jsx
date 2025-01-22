@@ -5,7 +5,6 @@ import { auth } from "../services/firebaseConfig";
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  console.log("entrou no autProvider");
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
