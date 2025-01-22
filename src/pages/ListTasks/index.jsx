@@ -15,7 +15,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../../services/firebaseConfig";
 import { EditTaskModal } from "../../components/EditTaskModal/index.jsx";
-import "./ListTasks.css";
+import "./listTasks.css";
 import { ConfirmDeleteModal } from "../../components/DeleteTaskModal/index.jsx";
 import "boxicons";
 
