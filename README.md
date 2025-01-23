@@ -85,6 +85,8 @@ Tecnologias Utilizadas
 
 React: Biblioteca para construção de interfaces.
 
+BoxIcons: Biblioteca de icones
+
 Firebase: Backend para autenticação e banco de dados.
 
 
