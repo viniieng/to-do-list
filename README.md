@@ -1,95 +1,203 @@
-To-Do List Project
+# 📝 To-Do List
 
-Este é um projeto simples de lista de tarefas, onde você pode se registrar, fazer login, e gerenciar suas tarefas de forma eficiente. O projeto possui três rotas principais e requer autenticação para acesso a algumas delas.
+> Uma aplicação moderna de gerenciamento de tarefas com autenticação e sincronização em tempo real.
 
-Pré-requisitos
+## 📋 Sobre o Projeto
 
-Antes de começar, certifique-se de que você tem os seguintes itens instalados no seu computador:
+Este é um projeto de lista de tarefas completo e funcional, desenvolvido com React e Firebase. Permite que usuários se registrem, façam login (inclusive com Google) e gerenciem suas tarefas de forma eficiente e intuitiva.
 
-Node.js (Recomendado: última versão LTS)
+### ✨ Funcionalidades
 
-NPM (gerenciador de pacotes, geralmente incluído com o Node.js)
+- 🔐 **Autenticação completa** (E-mail/Senha e Google)
+- ➕ **Criar tarefas** com nome, descrição e estado
+- ✏️ **Editar tarefas** existentes
+- 🗑️ **Deletar tarefas** com modal de confirmação
+- 🔄 **Sincronização em tempo real** com Firebase
+- 📊 **Organização por estados**: A fazer, Fazendo e Feito
+- 🎯 **Filtrar tarefas** pendentes e concluídas
+- 📱 **Interface responsiva e moderna**
+- 🚀 **Redirecionamento automático** para login na rota raiz
 
-Como executar o projeto
+---
 
-1. Clone o repositório
+## 🚀 Começando
 
-Clone este projeto no seu computador local usando o comando:
+### 📋 Pré-requisitos
 
+Antes de começar, certifique-se de ter instalado:
+
+- [Node.js](https://nodejs.org/) (versão LTS recomendada)
+- NPM ou PNPM (gerenciador de pacotes)
+
+### 📦 Instalação
+
+1. **Clone o repositório**
+
+```bash
 git clone <URL_DO_REPOSITORIO>
+cd to-do-list
+```
 
-Substitua <URL_DO_REPOSITORIO> pela URL do repositório GitHub.
+2. **Instale as dependências**
 
-2. Instale as dependências
-
-Acesse a pasta do projeto no terminal e instale as dependências necessárias:
-
-cd nome-do-projeto
+```bash
 npm install
+```
 
-3. Execute o projeto
+ou se estiver usando pnpm:
 
-Inicie o servidor de desenvolvimento com o comando:
+```bash
+pnpm install
+```
 
+3. **Configure o Firebase**
+
+Certifique-se de configurar as variáveis de ambiente do Firebase no arquivo `src/services/firebaseConfig.js`
+
+### ▶️ Executando o projeto
+
+**Modo desenvolvimento:**
+
+```bash
 npm run dev
+```
 
-O link do servidor local será exibido no terminal, geralmente algo como http://localhost:5173. Abra o link no seu navegador.
+O servidor será iniciado em `http://localhost:5173`
 
-Rotas Disponíveis
+**Build para produção:**
 
-1. /register
+```bash
+npm run build
+```
 
-Descrição: Página para criar uma nova conta.
+**Preview da build:**
 
-Funcionamento: Insira um e-mail válido e crie uma senha para se registrar.
+```bash
+npm run preview
+```
 
-2. /login
+**Linter:**
 
-Descrição: Página para fazer login na aplicação.
+```bash
+npm run lint
+```
 
-Funcionamento:
+---
 
-Faça login com o e-mail e a senha cadastrados em /register.
+## 🗺️ Rotas da Aplicação
 
-Login com Google: Você também pode fazer login rapidamente usando a conta Google.
+| Rota | Descrição | Acesso |
+|------|-----------|--------|
+| `/` | Redireciona automaticamente para `/login` | Público |
+| `/login` | Página de login (E-mail/Senha ou Google) | Público |
+| `/register` | Página de cadastro de nova conta | Público |
+| `/tasks` | Dashboard de gerenciamento de tarefas | Privado (requer autenticação) |
 
-3. /tasks
+---
 
-Descrição: Página principal para gerenciamento de tarefas.
+## 🎨 Funcionalidades Detalhadas
 
-Funcionamento:
+### 🔐 Autenticação
 
-Acesso restrito: Você só pode acessar esta rota se estiver registrado e autenticado.
+- **Registro**: Crie uma conta com e-mail e senha
+- **Login tradicional**: Acesse com suas credenciais
+- **Login com Google**: Autenticação rápida via conta Google
+- **Rotas protegidas**: Apenas usuários autenticados acessam `/tasks`
 
-Modal de criação de tarefas: Permite criar uma nova tarefa preenchendo os campos necessários e escolhendo um dos três estados:
+### 📋 Gerenciamento de Tarefas
 
-TODO
+- **Criar tarefa**: Preencha nome, descrição e escolha o estado
+- **Estados disponíveis**:
+  - 🔵 **A fazer** - Tarefas que ainda não foram iniciadas
+  - 🟡 **Fazendo** - Tarefas em andamento
+  - 🟢 **Feito** - Tarefas concluídas
+- **Editar tarefa**: Clique no ícone de edição para modificar
+- **Deletar tarefa**: Remova tarefas com confirmação de segurança
+- **Filtro inteligente**: Alterne entre tarefas pendentes e concluídas
+- **Sincronização em tempo real**: Todas as mudanças são salvas automaticamente
 
-DOING
+---
 
-DONE
+## 🛠️ Tecnologias Utilizadas
 
-Funcionalidades
+### Frontend
+- ⚛️ **React** - Biblioteca para construção de interfaces
+- 🚦 **React Router DOM** - Gerenciamento de rotas
+- 🎨 **CSS3** - Estilização customizada
 
-Registro de usuário: Crie uma conta com e-mail e senha.
+### Backend & Serviços
+- 🔥 **Firebase** - Backend as a Service
+  - Authentication (E-mail/Senha e Google)
+  - Firestore Database (banco de dados em tempo real)
 
-Autenticação: Faça login com sua conta ou use a autenticação via Google.
+### Ferramentas & Bibliotecas
+- ⚡ **Vite** - Build tool e dev server ultrarrápido
+- 📦 **BoxIcons** - Biblioteca de ícones
+- 🔧 **ESLint** - Linting e qualidade de código
+- 🆔 **UUID** - Geração de IDs únicos
 
-Gerenciamento de tarefas:
+---
 
-Adicione tarefas com título, descrição e estado.
+## 📁 Estrutura do Projeto
 
-Os estados disponíveis são TODO, DOING e DONE.
+```
+to-do-list/
+├── src/
+│   ├── auth/
+│   │   └── PrivateRoutes.jsx       # Proteção de rotas privadas
+│   ├── components/
+│   │   ├── Card/                   # Componente de card de tarefa
+│   │   ├── DeleteTaskModal/        # Modal de confirmação de exclusão
+│   │   ├── EditTaskModal/          # Modal de edição de tarefa
+│   │   └── Form/                   # Formulário de criação de tarefa
+│   ├── contexts/
+│   │   └── authContext.jsx         # Context API para autenticação
+│   ├── pages/
+│   │   ├── ListTasks/              # Dashboard de tarefas
+│   │   ├── Login/                  # Página de login
+│   │   └── Register/               # Página de registro
+│   ├── routes/
+│   │   └── routes.jsx              # Configuração de rotas
+│   ├── services/
+│   │   ├── firebaseConfig.js       # Configuração do Firebase
+│   │   └── taskService.js          # Serviços de tarefas
+│   ├── App.jsx                     # Componente raiz
+│   └── main.jsx                    # Entrada da aplicação
+├── package.json
+├── vite.config.js
+└── README.md
+```
 
-Tecnologias Utilizadas
+---
 
-React: Biblioteca para construção de interfaces.
+## 🤝 Contribuindo
 
-BoxIcons: Biblioteca de icones
+Contribuições são sempre bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests.
 
-Firebase: Backend para autenticação e banco de dados.
+1. Fork o projeto
+2. Crie sua feature branch (`git checkout -b feature/MinhaFeature`)
+3. Commit suas mudanças (`git commit -m 'Adiciona MinhaFeature'`)
+4. Push para a branch (`git push origin feature/MinhaFeature`)
+5. Abra um Pull Request
 
+---
 
-Observações
+## 📄 Licença
 
-Certifique-se de que as variáveis de ambiente para a configuração do Firebase estejam corretamente configuradas no projeto.
+Este projeto é de código aberto e está disponível para uso educacional e pessoal.
+
+---
+
+## 👨‍💻 Autor
+
+Desenvolvido com ❤️ por Vinicius Engelmann
+
+---
+
+## 📞 Suporte
+
+Se você tiver alguma dúvida ou problema, sinta-se à vontade para abrir uma issue no repositório.
+
+---
+
+⭐ Se este projeto foi útil para você, considere dar uma estrela no repositório!
