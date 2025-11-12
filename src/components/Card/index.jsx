@@ -20,13 +20,26 @@ export default function Card(props) {
     }
   };
 
+  const getStateText = (state) => {
+    switch (state) {
+      case "TODO":
+        return "A fazer";
+      case "DOING":
+        return "Fazendo";
+      case "DONE":
+        return "Feito";
+      default:
+        return state;
+    }
+  };
+
   return (
     <div className="card">
       <div className="card-header">
         <h2 className="card-name">{name}</h2>
       </div>
       <p className="card-description">{description}</p>
-      <span className={`card-state ${getStateClass(state)}`}>{state}</span>
+      <span className={`card-state ${getStateClass(state)}`}>{getStateText(state)}</span>
       <div className="card-buttons">
         <button className="card-edit-button" onClick={onEdit}>
           <box-icon name="edit-alt" color="gray"></box-icon>

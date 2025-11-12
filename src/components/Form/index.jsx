@@ -64,9 +64,9 @@ export default function Form() {
           value={state}
           onChange={(e) => setState(e.target.value)}
         >
-          <option value="TODO">TODO</option>
-          <option value="DOING">DOING</option>
-          <option value="DONE">DONE</option>
+          <option value="TODO">A fazer</option>
+          <option value="DOING">Fazendo</option>
+          <option value="DONE">Feito</option>
         </select>
       </div>
       {errorMessage && <p className="error-message">{errorMessage}</p>}{" "}
