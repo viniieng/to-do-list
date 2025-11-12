@@ -12,11 +12,14 @@ import {
   updateDoc,
   doc,
   deleteDoc,
+  getDocs,
+  writeBatch,
 } from "firebase/firestore";
 import { db } from "../../services/firebaseConfig";
 import { EditTaskModal } from "../../components/EditTaskModal/index.jsx";
 import "./listTasks.css";
 import { ConfirmDeleteModal } from "../../components/DeleteTaskModal/index.jsx";
+import { DeleteAllTasksModal } from "../../components/DeleteAllTasksModal/index.jsx";
 import "boxicons";
 
 export const ListTasks = () => {
@@ -29,6 +32,7 @@ export const ListTasks = () => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [taskToDelete, setTaskToDelete] = useState(null);
   const [showDoneTasks, setShowDoneTasks] = useState(false);
+  const [isDeleteAllModalOpen, setIsDeleteAllModalOpen] = useState(false);
 
   const fetchTasks = () => {
     try {
@@ -98,6 +102,37 @@ export const ListTasks = () => {
     setShowDoneTasks((prevState) => !prevState);
   };
 
+  const handleDeleteAllTasks = async () => {
+    try {
+      const tasksRef = collection(db, "tasks");
+      const q = query(tasksRef, where("userId", "==", user.uid));
+      const querySnapshot = await getDocs(q);
+
+      if (querySnapshot.empty) {
+        console.log("Nenhuma tarefa para excluir");
+        setIsDeleteAllModalOpen(false);
+        return;
+      }
+
+      const batch = writeBatch(db);
+      querySnapshot.docs.forEach((document) => {
+        batch.delete(doc(db, "tasks", document.id));
+      });
+
+      await batch.commit();
+      setIsDeleteAllModalOpen(false);
+    } catch (error) {
+      console.error("Erro ao excluir todas as tarefas:", error.message);
+    }
+  };
+
+  const openDeleteAllModal = () => {
+    const totalTasks = tasks.length + doneTasks.length;
+    if (totalTasks > 0) {
+      setIsDeleteAllModalOpen(true);
+    }
+  };
+
   useEffect(() => {
     const unsubscribe = fetchTasks();
 
@@ -113,6 +148,14 @@ export const ListTasks = () => {
             onClick={toggleDoneTasks}
           >
             {showDoneTasks ? "Tarefas Pendentes" : "Tarefas Concluídas"}
+          </button>
+          <button
+            className="list-task-delete-all-btn"
+            onClick={openDeleteAllModal}
+            disabled={tasks.length === 0 && doneTasks.length === 0}
+          >
+            <box-icon name="trash" color="white"></box-icon>
+            Excluir Todas
           </button>
           <button
             className="list-task-logout-btn"
@@ -190,6 +233,13 @@ export const ListTasks = () => {
         onClose={closeDeleteModal}
         onConfirm={handleDelete}
         task={taskToDelete}
+      />
+
+      <DeleteAllTasksModal
+        isOpen={isDeleteAllModalOpen}
+        onClose={() => setIsDeleteAllModalOpen(false)}
+        onConfirm={handleDeleteAllTasks}
+        taskCount={tasks.length + doneTasks.length}
       />
     </div>
   );
